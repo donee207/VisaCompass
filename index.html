@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="day">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisaCompass — viza va hujjatlar yo'lchisi</title>
+  <!-- Shriftlar lokal: internetsiz ham ishlaydi -->
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Tungi rejim uchun yulduzli osmon -->
+  <div class="stars" aria-hidden="true"></div>
+
+  <!-- ================= HERO ================= -->
+  <header class="hero" id="top">
+    <div class="glass">
+      <nav class="glass-nav">
+        <div class="nav-left">
+          <button class="dots" id="menuBtn" aria-label="Menu">•••</button>
+          <button class="theme-btn" id="themeBtn">
+            <span class="theme-ico" aria-hidden="true"></span>
+            <span id="themeLabel"></span>
+          </button>
+        </div>
+        <a href="#top" class="brand">
+          <span class="brand-name">VisaCompass</span>
+          <span class="brand-sub">visa guide</span>
+        </a>
+        <div class="lang" id="langSwitch">
+          <button data-lang="uz">UZ</button>
+          <button data-lang="en">EN</button>
+          <button data-lang="ru">RU</button>
+        </div>
+      </nav>
+
+      <div class="menu" id="menu">
+        <a href="#check" data-i18n="nav_check"></a>
+        <a href="#calc" data-i18n="nav_calc"></a>
+        <a href="#countries" data-i18n="nav_countries"></a>
+        <a href="#faq" data-i18n="nav_faq"></a>
+      </div>
+
+      <div class="hero-center">
+        <h1 data-i18n="hero_title"></h1>
+        <p data-i18n="hero_sub"></p>
+
+        <div class="hero-search">
+          <div class="search" id="heroSearch">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="text" data-i18n-ph="search_ph" autocomplete="off" aria-label="search">
+          </div>
+          <ul class="suggest" role="listbox"></ul>
+        </div>
+        <button class="pill-btn" id="wizardBtn" data-i18n="wizard_btn"></button>
+      </div>
+
+      <div class="glass-bottom">
+        <a class="chip" href="#check"><span class="chip-ico">✈</span> <span data-i18n="nav_check"></span></a>
+        <div class="chip chip-group">
+          <a href="#calc" data-i18n="nav_calc"></a>
+          <a href="#countries" data-i18n="nav_countries"></a>
+          <a href="#faq" data-i18n="nav_faq"></a>
+        </div>
+        <a class="chip chip-toggle" href="#about">
+          <span data-i18n="hero_more"></span>
+          <span class="brand-mini">VISACOMPASS</span>
+          <span class="knob"></span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= CHECKER + RESULT DASHBOARD ================= -->
+    <section class="section" id="check">
+      <h2 class="section-title" data-i18n="check_title"></h2>
+
+      <div class="checker">
+        <label class="field">
+          <span data-i18n="label_passport"></span>
+          <select id="passportSel"></select>
+        </label>
+        <span class="swap" aria-hidden="true">→</span>
+        <label class="field">
+          <span data-i18n="label_dest"></span>
+          <select id="destSel"></select>
+        </label>
+        <button class="btn-dark" id="checkBtn" data-i18n="btn_check"></button>
+      </div>
+
+      <div id="result" class="result">
+        <p class="empty" data-i18n="empty_hint"></p>
+      </div>
+    </section>
+
+    <!-- ================= STAY CALCULATOR ================= -->
+    <section class="section" id="calc">
+      <h2 class="section-title" data-i18n="calc_title"></h2>
+      <p class="section-sub" data-i18n="calc_sub"></p>
+      <div class="calc">
+        <div class="calc-left">
+          <p class="calc-country" id="calcCountry"></p>
+          <p class="calc-rule" id="calcRule"></p>
+          <div id="trips"></div>
+          <button class="btn-ghost" id="addTrip" data-i18n="calc_add"></button>
+        </div>
+        <div class="calc-right" id="calcOut"></div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="section" id="about">
+      <h2 class="section-title" data-i18n="about_title"></h2>
+
+      <div class="row">
+        <article class="card card-purple">
+          <img src="images/mount2.jpg" alt="">
+          <div>
+            <h3 data-i18n="about_card_title"></h3>
+            <p data-i18n="about_card_text"></p>
+            <small data-i18n="about_card_note"></small>
+          </div>
+        </article>
+        <aside class="side">
+          <p data-i18n="about_side"></p>
+          <a href="#countries" class="btn-outline" data-i18n="about_side_btn"></a>
+        </aside>
+      </div>
+
+      <div class="row row-reverse">
+        <aside class="side">
+          <p data-i18n="types_side"></p>
+          <button class="btn-outline" id="wizardBtn2" data-i18n="wizard_btn"></button>
+        </aside>
+        <article class="card card-dark">
+          <div>
+            <h3 data-i18n="types_title"></h3>
+            <p id="typeText"></p>
+            <div class="type-switch">
+              <button class="tag" id="typePrev" aria-label="prev">‹</button>
+              <span id="typeName" class="tag tag-active"></span>
+              <button class="tag" id="typeNext" aria-label="next">›</button>
+            </div>
+          </div>
+          <img id="typeImg" src="images/plane.jpg" alt="">
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= COUNTRIES ================= -->
+    <section class="section" id="countries">
+      <div class="countries-head">
+        <div>
+          <h2 class="section-title left" data-i18n="countries_title"></h2>
+          <p class="muted" id="countriesSub"></p>
+        </div>
+        <div class="sort">
+          <span data-i18n="sort_label"></span>
+          <button data-sort="easy" class="active" data-i18n="sort_easy"></button>
+          <button data-sort="hard" data-i18n="sort_hard"></button>
+          <button data-sort="name" data-i18n="sort_name"></button>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" id="faq">
+      <h2 class="section-title" data-i18n="faq_title"></h2>
+      <div class="faq" id="faqList"></div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="hero-search footer-search">
+        <div class="search">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="text" data-i18n-ph="search_ph" autocomplete="off" aria-label="search">
+        </div>
+        <ul class="suggest up" role="listbox"></ul>
+      </div>
+      <div class="footer-brand">
+        <span>VisaCompass</span>
+        <small>visa guide</small>
+      </div>
+    </div>
+
+    <div class="footer-info">
+      <div>
+        <h4 data-i18n="footer_sources"></h4>
+        <ul class="sources" id="sources"></ul>
+      </div>
+      <div>
+        <h4 data-i18n="footer_author"></h4>
+        <!-- O'z ismingiz va guruhingizni shu yerga yozing -->
+        <p class="author">Doniyorbek Adashev</p>
+        <h4 data-i18n="footer_contacts"></h4>
+        <p class="contacts">
+          <a href="mailto:email@example.com">email@example.com</a><br>
+          <a href="https://t.me/username">Telegram: @username</a>
+        </p>
+      </div>
+      <p class="disclaimer" data-i18n="footer_disclaimer"></p>
+    </div>
+    <p class="copy">© 2026 VisaCompass</p>
+  </footer>
+
+  <!-- ================= WIZARD (mini-anketa) ================= -->
+  <div class="modal" id="wizard" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true">
+      <div class="modal-head">
+        <div>
+          <small id="wizStep"></small>
+          <h3 id="wizQ"></h3>
+        </div>
+        <button class="close" id="wizClose" aria-label="close">✕</button>
+      </div>
+      <div class="wiz-bar"><i id="wizBar"></i></div>
+      <div class="wiz-options" id="wizOptions"></div>
+      <div class="modal-foot">
+        <button class="btn-ghost" id="wizBack" data-i18n="wiz_back"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- Kutubxona lokal (js/lib) — internetsiz ishlaydi -->
+  <script src="js/lib/html2pdf.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
